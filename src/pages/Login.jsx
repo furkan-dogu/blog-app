@@ -7,10 +7,12 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik } from "formik";
 import LoginForm, { loginSchema } from "../components/auth/LoginForm";
+import useAuthCalls from "../hooks/useAuthCalls";
 
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const {login} = useAuthCalls()
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -30,10 +32,10 @@ export default function Login() {
             Sign in
           </Typography>
           <Formik
-            // initialValues={{ email: "", password: "" }}
+            initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
-              // login(values);
+              login(values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}

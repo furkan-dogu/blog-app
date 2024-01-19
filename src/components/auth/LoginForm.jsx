@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -24,19 +23,14 @@ export const loginSchema = object({
       /[a-z]/,
       "The password must contain at least one lower case letter."
     )
-    .matches(
-      /[A-Z]/,
-      "The password must contain at least one capital letter."
-    )
+    .matches(/[A-Z]/, "The password must contain at least one capital letter.")
     .matches(
       /[@$!%*?&]+/,
       "The password must contain at least one special character (@$!%*?&)."
     ),
 });
 
-const LoginForm = (
-  handleChange, values, touched, errors, handleBlur
-) => {
+const LoginForm = ({handleChange, values, touched, errors, handleBlur}) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -44,76 +38,72 @@ const LoginForm = (
     setShowPassword(!showPassword);
   };
 
+
   return (
     <Form>
-    <Box noValidate sx={{ mt: 1 }}>
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        id="email"
-        label="Email Address"
-        name="email"
-        autoComplete="email"
-        autoFocus
-        // value={values.email}
-        // onChange={handleChange}
-        // error={touched.email && Boolean(errors.email)}
-        // helperText={errors.email}
-        // onBlur={handleBlur}
-      />
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        name="password"
-        label="Password"
-        type={showPassword ? "text" : "password"}
-        id="password"
-        autoComplete="current-password"
-        // value={values.password}
-        // onChange={handleChange}
-        // error={touched.password && Boolean(errors.password)}
-        // helperText={errors.password}
-        // onBlur={handleBlur}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={togglePasswordVisibility}
-                edge="end"
-              >
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-      >
-        Sign In
-      </Button>
-      <Stack direction={"row"} gap={"5px"}>
-        <Typography variant="body2">
-          Don't have an account?
-        </Typography>
-
-        <Typography
-          variant="body2"
-          sx={{ color: "red", cursor: "pointer" }}
-          onClick={() => navigate("/register")}
+      <Box noValidate sx={{ mt: 1 }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          error={touched.email && Boolean(errors.email)}
+          helperText={errors.email}
+          onBlur={handleBlur}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type={showPassword ? "text" : "password"}
+          id="password"
+          value={values.password}
+          onChange={handleChange}
+          error={touched.password && Boolean(errors.password)}
+          helperText={errors.password}
+          onBlur={handleBlur}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePasswordVisibility}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
         >
-          Sign Up
-        </Typography>
-      </Stack>
-    </Box>
-  </Form>
-  )
-}
+          Sign In
+        </Button>
+        <Stack direction={"row"} gap={"5px"}>
+          <Typography variant="body2">Don't have an account?</Typography>
 
-export default LoginForm
+          <Typography
+            variant="body2"
+            sx={{ color: "red", cursor: "pointer" }}
+            onClick={() => navigate("/register")}
+          >
+            Sign Up
+          </Typography>
+        </Stack>
+      </Box>
+    </Form>
+  );
+};
+
+export default LoginForm;
