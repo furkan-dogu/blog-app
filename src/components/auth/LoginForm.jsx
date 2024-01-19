@@ -86,7 +86,7 @@ const LoginForm = ({handleChange, values, touched, errors, handleBlur}) => {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2, backgroundColor:"#0c0c0c", "&:hover":{backgroundColor:"#2F2F2F"} }}
         >
           Sign In
         </Button>
