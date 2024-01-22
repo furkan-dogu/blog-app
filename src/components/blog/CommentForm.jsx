@@ -12,17 +12,41 @@ import FormatBold from '@mui/icons-material/FormatBold';
 import FormatItalic from '@mui/icons-material/FormatItalic';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
+import useBlogCalls from '../../hooks/useBlogCalls';
+import { useSelector } from 'react-redux';
 
-export default function ExampleTextareaComment() {
+export default function CommentForm() {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const {postComment} = useBlogCalls()
+  const {detail} = useSelector(state=>state.blog)
+
+  const [info, setInfo] = React.useState({
+    blogId:detail._id,
+    comment:""
+  })
+
+  const handleChange = (e) => {
+    setInfo({...info, [e.target.name]:e.target.value})
+  }
+
+  console.log(info);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    postComment(info)
+  }
   return (
-    <FormControl sx={{width:"60%"}}>
+    <FormControl sx={{width:"60%"}} component={"form"} onSubmit={handleSubmit}>
       <FormLabel>Your comment</FormLabel>
       <Textarea
         placeholder="Type something here…"
         minRows={3}
+        onChange={handleChange}
+        name="comment"
+        defaultValue={info.comment}
         endDecorator={
           <Box
             sx={{
@@ -75,7 +99,7 @@ export default function ExampleTextareaComment() {
             >
               <FormatItalic />
             </IconButton>
-            <Button sx={{ ml: 'auto', px:4 }}>Send</Button>
+            <Button type='submit' sx={{ ml: 'auto', px:4 }}>Send</Button>
           </Box>
         }
         sx={{

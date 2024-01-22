@@ -44,9 +44,11 @@ export default function CardBlog({ blog }) {
         <Box>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
+            <Typography>{blog.likes.length}</Typography>
           </IconButton>
           <IconButton aria-label="comment">
             <CommentIcon />
+            <Typography>{blog.comments.length}</Typography>
           </IconButton>
           <IconButton aria-label="visible">
             <VisibilityIcon />
@@ -54,7 +56,7 @@ export default function CardBlog({ blog }) {
           </IconButton>
         </Box>
 
-        <Button variant="contained" sx={{ color: "cyan", backgroundColor: "black", cursor: "pointer", "&:hover": { background: "darkslateblue", color: "white", transform: "scale(1.1)" } }}
+        <Button variant="contained" sx={{ color: "#0ef", backgroundColor: "#0C0C0C", cursor: "pointer", "&:hover": { background: "#0ef", color: "#0C0C0C", scale:"1.02"} }}
           onClick={() => navigate(`/detail/${blog._id}`, { state: { blog } })}
         >
           Read More</Button>
