@@ -27,7 +27,7 @@ const useBlogCalls = () => {
         try {
             const {data} = await axiosWithToken(`/blogs/${id}`)
             dispatch(getDetailBlogsSuccess(data))
-            toastSuccessNotify("başarılı")
+            toastSuccessNotify("detail başarılı")
         } catch (error) {
             dispatch(fetchFail());
             toastErrorNotify("detail başarısız")

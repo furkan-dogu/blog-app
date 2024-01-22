@@ -32,6 +32,6 @@ const blogSlice = createSlice({
   }
 });
 
-export const {fetchStart, fetchFail, getBlogsSuccess,getDetailBlogsSuccess} = blogSlice.actions
+export const {fetchStart, fetchFail, getBlogsSuccess, getDetailBlogsSuccess} = blogSlice.actions
 
 export default blogSlice.reducer
