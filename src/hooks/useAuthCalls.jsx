@@ -15,7 +15,7 @@ const useAuthCalls = () => {
       const { data } = await axiosPublic.post("/auth/login/", userInfo);
       dispatch(loginSuccess(data));
       toastSuccessNotify("The login process is successful.")
-      navigate("/")
+      navigate(-1)
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("The login process failed")
