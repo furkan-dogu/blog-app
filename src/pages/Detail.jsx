@@ -24,6 +24,11 @@ const Detail = () => {
 
   const {id} = useParams()
 
+  const [info, setInfo] = useState({
+    blogId: detail._id,
+    comment: "",
+  });
+
   useEffect(() => {
     getDetailBlogs(id);
   }, []);
@@ -86,8 +91,8 @@ const Detail = () => {
       </Card>
       {commentArea && (
         <>
-          <CommentForm />
-          <CommentCard />
+          <CommentForm info={info} setInfo={setInfo} />
+          <CommentCard info={info} setInfo={setInfo} />
         </>
       )}
     </Stack>

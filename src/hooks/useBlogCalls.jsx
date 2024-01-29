@@ -49,7 +49,34 @@ const useBlogCalls = () => {
       console.log(error);
     }
   };
-  return { getBlogs, getDetailBlogs, postComment };
+
+  const deleteComment = async (info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.delete(`/comments/${info._id}`);
+      getDetailBlogs(info.blogId)
+      toastSuccessNotify("silme başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("silme başarısız");
+      console.log(error);
+    }
+  };
+
+  const editComment = async (info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`/comments/${info._id}`, info);
+      getDetailBlogs(info.blogId)
+      toastSuccessNotify("edit başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("edit başarısız");
+      console.log(error);
+    }
+  };
+
+  return { getBlogs, getDetailBlogs, postComment, deleteComment, editComment };
 };
 
 export default useBlogCalls;
