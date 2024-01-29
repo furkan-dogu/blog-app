@@ -26,7 +26,7 @@ export default function CommentCard() {
             }}
           >
             <Typography level="h2">
-              {comment.userId.firstName} {comment.userId.lastName}
+              {comment.userId.username}
             </Typography>
             <CardContent>
               <Typography level="title-lg">

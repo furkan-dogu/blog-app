@@ -39,7 +39,13 @@ export default function NewBlog() {
         margin: 'auto',
         padding: '20px',
         boxShadow: 3,
-        borderRadius: '12px'
+        borderRadius: '12px',
+        mt:4,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        gap:1
       }}
       noValidate
       autoComplete="off"
@@ -53,16 +59,16 @@ export default function NewBlog() {
         fullWidth
         id="title"
         label="Title"
-        margin="normal"
+        // margin="normal"
       />
       <TextField
         required
         fullWidth
         id="image-url"
         label="Image URL"
-        margin="normal"
+        // margin="normal"
       />
-      <FormControl fullWidth margin="normal">
+      <FormControl fullWidth sx={{m:1}}>
         <InputLabel id="category-label">Category</InputLabel>
         <Select
           labelId="category-label"
@@ -78,7 +84,7 @@ export default function NewBlog() {
           ))}
         </Select>
       </FormControl>
-      <FormControl fullWidth margin="normal">
+      <FormControl fullWidth sx={{m:1}}>
         <InputLabel id="status-label">Status</InputLabel>
         <Select
           labelId="status-label"
@@ -99,7 +105,7 @@ export default function NewBlog() {
         fullWidth
         id="content"
         label="Content"
-        margin="normal"
+        // margin="normal"
         multiline
         rows={4}
       />
