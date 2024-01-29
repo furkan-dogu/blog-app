@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
@@ -14,16 +13,17 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
 import useBlogCalls from '../../hooks/useBlogCalls';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 export default function CommentForm() {
-  const [italic, setItalic] = React.useState(false);
-  const [fontWeight, setFontWeight] = React.useState('normal');
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [italic, setItalic] = useState(false);
+  const [fontWeight, setFontWeight] = useState('normal');
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const {postComment} = useBlogCalls()
   const {detail} = useSelector(state=>state.blog)
 
-  const [info, setInfo] = React.useState({
+  const [info, setInfo] = useState({
     blogId:detail._id,
     comment:""
   })
@@ -32,12 +32,11 @@ export default function CommentForm() {
     setInfo({...info, [e.target.name]:e.target.value})
   }
 
-  console.log(info);
-
   const handleSubmit = (e) => {
     e.preventDefault()
     postComment(info)
   }
+
   return (
     <FormControl sx={{width:"60%"}} component={"form"} onSubmit={handleSubmit}>
       <FormLabel>Your comment</FormLabel>

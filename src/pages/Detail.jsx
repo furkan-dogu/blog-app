@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Stack } from "@mui/material";
 import { CardActions } from "@mui/joy";
 import Card from "@mui/material/Card";
@@ -21,12 +21,12 @@ const Detail = () => {
   const { detail } = useSelector((state) => state.blog);
 
   const { getDetailBlogs } = useBlogCalls();
-  const location = useLocation();
-  const { blog } = location.state;
+
+  const {id} = useParams()
 
   useEffect(() => {
-    getDetailBlogs(blog._id);
-  }, [blog]);
+    getDetailBlogs(id);
+  }, []);
 
   const handleComment = () => {
     setCommentArea(!commentArea);
@@ -37,9 +37,9 @@ const Detail = () => {
       <Card sx={{ maxWidth: "60%" }}>
         <CardMedia
           component="img"
-          alt={blog?.title}
+          alt={detail?.title}
           height="50%"
-          image={blog?.image}
+          image={detail?.image}
           sx={{ objectFit: "contain" }}
         />
         <CardHeader
@@ -50,7 +50,7 @@ const Detail = () => {
           )}
         />
         <CardContent>
-          <Typography variant="body2">{blog.title}</Typography>
+          <Typography variant="body2">{detail.title}</Typography>
           <Typography
             color="text.secondary"
             gutterBottom
@@ -64,22 +64,22 @@ const Detail = () => {
               fontWeight: "400",
             }}
           >
-            {blog?.content}
+            {detail?.content}
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "space-between" }}>
           <Box>
             <IconButton aria-label="add to favorites">
               <FavoriteIcon />
-              <Typography>{blog?.likes?.length}</Typography>
+              <Typography>{detail?.likes?.length}</Typography>
             </IconButton>
             <IconButton aria-label="comment" onClick={handleComment}>
               <CommentIcon />
-              <Typography>{blog?.comments?.length}</Typography>
+              <Typography>{detail?.comments?.length}</Typography>
             </IconButton>
             <IconButton aria-label="visible">
               <VisibilityIcon />
-              <Typography>{blog?.countOfVisitors}</Typography>
+              <Typography>{detail?.countOfVisitors}</Typography>
             </IconButton>
           </Box>
         </CardActions>

@@ -57,7 +57,7 @@ export default function CardBlog({ blog }) {
         </Box>
 
         <Button variant="contained" sx={{ color: "#0ef", backgroundColor: "#0C0C0C", cursor: "pointer", "&:hover": { background: "#0ef", color: "#0C0C0C", scale:"1.02"} }}
-          onClick={() => navigate(`/detail/${blog._id}`, { state: { blog } })}
+          onClick={() => navigate(`/detail/${blog._id}`)}
         >
           Read More</Button>
       </CardActions>

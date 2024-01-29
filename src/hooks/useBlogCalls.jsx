@@ -41,6 +41,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post("/comments/", info);
+      getDetailBlogs(info.blogId)
       toastSuccessNotify("post başarılı");
     } catch (error) {
       dispatch(fetchFail());
