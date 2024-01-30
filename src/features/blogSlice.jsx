@@ -28,7 +28,7 @@ const blogSlice = createSlice({
         state.detail = payload.data
         state.loading = false;
         state.error = false;
-    },
+    },    
   }
 });
 

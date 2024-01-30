@@ -34,6 +34,7 @@ const authSlice = createSlice({
             state.loading = false
             state.token = ""
             state.image = ""
+            state._id = ""
         },
         fetchFail: (state) => {
             state.loading = false

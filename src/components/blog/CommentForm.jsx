@@ -27,7 +27,6 @@ export default function CommentForm({ info, setInfo, blogId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(info);
     if (info._id) {
       editComment(info);
     } else {

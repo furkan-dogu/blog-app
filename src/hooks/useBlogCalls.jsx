@@ -76,7 +76,20 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogs, getDetailBlogs, postComment, deleteComment, editComment };
+  const postLike = async (info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.post(`/blogs/${info._id}/postLike`);
+      getBlogs()
+      toastSuccessNotify("postlike başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("postlike başarısız");
+      console.log(error);
+    }
+  };
+
+  return { getBlogs, getDetailBlogs, postComment, deleteComment, editComment, postLike };
 };
 
 export default useBlogCalls;

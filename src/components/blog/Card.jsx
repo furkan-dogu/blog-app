@@ -10,10 +10,18 @@ import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import useBlogCalls from '../../hooks/useBlogCalls';
+import { useSelector } from 'react-redux';
 
 export default function CardBlog({ blog }) {
   const navigate = useNavigate()
-  
+
+  const {postLike} = useBlogCalls()
+
+  const {_id} = useSelector(state=>state.auth)
+
+  const likeStyle = blog.likes.includes(_id) ? {color:"red"} : {color:"inherit"}
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -42,8 +50,8 @@ export default function CardBlog({ blog }) {
       </CardContent>
       <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
         <Box>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+          <IconButton aria-label="add to favorites" onClick={() => postLike(blog)}>
+            <FavoriteIcon sx={likeStyle}/>
             <Typography>{blog.likes.length}</Typography>
           </IconButton>
           <IconButton aria-label="comment">

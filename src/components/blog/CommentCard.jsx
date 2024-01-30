@@ -32,7 +32,7 @@ export default function CommentCard({info,setInfo}) {
             <CardContent>
               <Typography level="title-lg">
                 {comment?.createdAt &&
-                  new Date(comment?.createdAt).toLocaleString("tr-TR")}
+                  new Date(comment?.updatedAt).toLocaleString("tr-TR")}
               </Typography>
               <Stack level="body-md">
                 <Box>
