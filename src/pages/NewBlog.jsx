@@ -59,14 +59,12 @@ export default function NewBlog() {
         fullWidth
         id="title"
         label="Title"
-        // margin="normal"
       />
       <TextField
         required
         fullWidth
         id="image-url"
         label="Image URL"
-        // margin="normal"
       />
       <FormControl fullWidth sx={{m:1}}>
         <InputLabel id="category-label">Category</InputLabel>
@@ -105,7 +103,6 @@ export default function NewBlog() {
         fullWidth
         id="content"
         label="Content"
-        // margin="normal"
         multiline
         rows={4}
       />

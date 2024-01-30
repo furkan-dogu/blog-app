@@ -7,6 +7,8 @@ const initialState = {
     token: "",
     image:"",
     _id:"",
+    bio:"",
+    email:"",
 }
 
 const authSlice = createSlice({
@@ -22,6 +24,8 @@ const authSlice = createSlice({
             state.token = payload.token
             state.image = payload.user.image
             state._id = payload.user._id
+            state.bio = payload.user.bio
+            state.email = payload.user.email
         },
         registerSuccess: (state, { payload }) => {
             state.loading = false
@@ -29,6 +33,8 @@ const authSlice = createSlice({
             state.token = payload.token
             state.image = payload.data.image
             state._id = payload.data._id
+            state.bio = payload.data.bio
+            state.email = payload.data.email
         },
         logoutSuccess: (state) => {
             state.user = ""
