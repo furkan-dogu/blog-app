@@ -28,6 +28,7 @@ const authSlice = createSlice({
             state.user = payload.data.username
             state.token = payload.token
             state.image = payload.data.image
+            state._id = payload.data._id
         },
         logoutSuccess: (state) => {
             state.user = ""
