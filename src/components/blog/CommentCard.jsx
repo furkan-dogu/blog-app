@@ -40,7 +40,7 @@ export default function CommentCard({info,setInfo}) {
                   {comment?.userId?._id === _id ? (
                     <CardActions>
                       <Button variant="solid" color="success" onClick={() => {
-                        setInfo({...info, comment:comment.comment})
+                        setInfo({...info, _id:comment._id, blogId:comment.blogId, comment:comment.comment})
                       }}>
                         Edit
                       </Button>

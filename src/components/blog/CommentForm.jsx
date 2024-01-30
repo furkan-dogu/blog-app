@@ -12,25 +12,14 @@ import FormatItalic from "@mui/icons-material/FormatItalic";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import Check from "@mui/icons-material/Check";
 import useBlogCalls from "../../hooks/useBlogCalls";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function CommentForm({info,setInfo}) {
+export default function CommentForm({ info, setInfo, blogId }) {
   const [italic, setItalic] = useState(false);
   const [fontWeight, setFontWeight] = useState("normal");
   const [anchorEl, setAnchorEl] = useState(null);
 
   const { postComment, editComment } = useBlogCalls();
-  const { detail } = useSelector((state) => state.blog);
-
-  // const [info, setInfo] = useState({
-  //   blogId: detail._id,
-  //   comment: "",
-  // });
-
-  useEffect(() => {
-    setInfo(info);
-  }, []);
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -38,12 +27,13 @@ export default function CommentForm({info,setInfo}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (detail._id) {
+    console.log(info);
+    if (info._id) {
       editComment(info);
     } else {
-      postComment(info);
+      postComment({ ...info, blogId });
     }
-    setInfo({ ...info, comment: "" });
+    setInfo({ comment: "" });
   };
 
   return (

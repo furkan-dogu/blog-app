@@ -91,7 +91,7 @@ const Detail = () => {
       </Card>
       {commentArea && (
         <>
-          <CommentForm info={info} setInfo={setInfo} />
+          <CommentForm info={info} setInfo={setInfo} blogId={detail._id} />
           <CommentCard info={info} setInfo={setInfo} />
         </>
       )}
