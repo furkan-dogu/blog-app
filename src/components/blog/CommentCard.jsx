@@ -22,7 +22,7 @@ export default function CommentCard({info,setInfo}) {
             invertedColors
             sx={{
               boxShadow: "lg",
-              maxWidth: "60%",
+              maxWidth: "90%",
               overflow: "auto",
               resize: "horizontal",
               m: "auto",

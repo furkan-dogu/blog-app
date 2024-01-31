@@ -9,7 +9,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar, Box, CardHeader } from "@mui/material";
+import { Avatar, Box, CardHeader, Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CommentForm from "../components/blog/CommentForm";
@@ -20,9 +20,11 @@ const Detail = () => {
   const [commentArea, setCommentArea] = useState(false);
   const { detail } = useSelector((state) => state.blog);
 
+  const { _id } = useSelector((state) => state.auth);
+
   const { getDetailBlogs } = useBlogCalls();
 
-  const {id} = useParams()
+  const { id } = useParams();
 
   const [info, setInfo] = useState({
     blogId: detail._id,
@@ -39,11 +41,10 @@ const Detail = () => {
 
   return (
     <Stack sx={{ my: 5, justifyContent: "center", alignItems: "center" }}>
-      <Card sx={{ maxWidth: "60%" }}>
+      <Card sx={{ maxWidth: "90%" }}>
         <CardMedia
           component="img"
           alt={detail?.title}
-          height="50%"
           image={detail?.image}
           sx={{ objectFit: "contain" }}
         />
@@ -94,6 +95,22 @@ const Detail = () => {
           <CommentForm info={info} setInfo={setInfo} blogId={detail._id} />
           <CommentCard info={info} setInfo={setInfo} />
         </>
+      )}
+      {detail?.userId?._id === _id ? (
+        <Stack level="body-md" mt={2}>
+          <Box>
+            <CardActions sx={{ display: "flex", gap: "2rem" }}>
+              <Button variant="contained" color="success">
+                update blog
+              </Button>
+              <Button variant="contained" color="error">
+                delete blog
+              </Button>
+            </CardActions>
+          </Box>
+        </Stack>
+      ) : (
+        ""
       )}
     </Stack>
   );

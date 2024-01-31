@@ -37,7 +37,7 @@ export default function CommentForm({ info, setInfo, blogId }) {
 
   return (
     <FormControl
-      sx={{ width: "60%" }}
+      sx={{ width: "90%" }}
       component={"form"}
       onSubmit={handleSubmit}
     >
