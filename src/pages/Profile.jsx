@@ -6,25 +6,34 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 
 export default function Profile() {
-  const {user, image, bio, email} = useSelector(state=>state.auth)
+  const { user, image, bio, email } = useSelector((state) => state.auth);
 
   return (
-    <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"}>
-      <Box sx={{ textAlign:"center" }}>
+    <Stack
+      justifyContent={"center"}
+      alignItems={"center"}
+      minHeight={"calc(100vh - 70px)"}
+    >
+      <Box
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flexDirection={"column"}
+        textAlign={"center"}
+        mt={2}
+      >
         <CardMedia
           component="img"
           alt={user}
           image={image}
-          sx={{width:"300px", height:"300px"}}
+          sx={{ width: 300, height: 300 }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {user}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="h5">{user}</Typography>
+          <Typography variant="body1" my={2}>
             {email}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" p={1}>
             {bio}
           </Typography>
         </CardContent>
