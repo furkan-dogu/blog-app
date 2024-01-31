@@ -15,19 +15,18 @@ import { useSelector } from 'react-redux';
 
 export default function CardBlog({ blog }) {
   const navigate = useNavigate()
-
   const {postLike} = useBlogCalls()
-
   const {_id} = useSelector(state=>state.auth)
 
-  const likeStyle = blog.likes.includes(_id) ? {color:"red"} : {color:"inherit"}
+ const likeStyle = blog.likes.includes(_id) ? {color: "red"} : {color:"inherit"}
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 350 , height:460 }}>
       <CardMedia
         component="img"
         alt={blog?.title}
-        height="140"
+        sx={{ width: 350 , height:200 }}
+     
         image={blog?.image}
       />
       <CardContent>
@@ -39,6 +38,7 @@ export default function CardBlog({ blog }) {
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           WebkitLineClamp: 3,
+          height:"80px"
         }}>
           {blog?.content}
         </Typography>
@@ -50,8 +50,8 @@ export default function CardBlog({ blog }) {
       </CardContent>
       <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
         <Box>
-          <IconButton aria-label="add to favorites" onClick={() => postLike(blog)}>
-            <FavoriteIcon sx={likeStyle}/>
+          <IconButton onClick={()=>postLike(blog)}  aria-label="add to favorites">
+            <FavoriteIcon sx={likeStyle} />
             <Typography>{blog.likes.length}</Typography>
           </IconButton>
           <IconButton aria-label="comment">

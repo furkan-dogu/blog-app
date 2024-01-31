@@ -6,6 +6,7 @@ import {
   fetchStart,
   getBlogsSuccess,
   getDetailBlogsSuccess,
+  getCategoriesSuccess,
 } from "../features/blogSlice";
 
 const useBlogCalls = () => {
@@ -41,7 +42,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post("/comments/", info);
-      getDetailBlogs(info.blogId)
+      getDetailBlogs(info.blogId);
       toastSuccessNotify("post başarılı");
     } catch (error) {
       dispatch(fetchFail());
@@ -54,7 +55,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.delete(`/comments/${info._id}`);
-      getDetailBlogs(info.blogId)
+      getDetailBlogs(info.blogId);
       toastSuccessNotify("silme başarılı");
     } catch (error) {
       dispatch(fetchFail());
@@ -67,7 +68,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`/comments/${info._id}`, info);
-      getDetailBlogs(info.blogId)
+      getDetailBlogs(info.blogId);
       toastSuccessNotify("edit başarılı");
     } catch (error) {
       dispatch(fetchFail());
@@ -80,7 +81,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post(`/blogs/${info._id}/postLike`);
-      getBlogs()
+      getBlogs();
       toastSuccessNotify("postlike başarılı");
     } catch (error) {
       dispatch(fetchFail());
@@ -89,7 +90,40 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogs, getDetailBlogs, postComment, deleteComment, editComment, postLike };
+  const getCategories = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken("/categories/");
+      dispatch(getCategoriesSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+  const postBlog = async (info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.post("/blogs/", info);
+      getBlogs();
+      toastSuccessNotify("postblog başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("postblog başarısız");
+      console.log(error);
+    }
+  };
+
+  return {
+    getBlogs,
+    getDetailBlogs,
+    postComment,
+    deleteComment,
+    editComment,
+    postLike,
+    getCategories,
+    postBlog,
+  };
 };
 
 export default useBlogCalls;

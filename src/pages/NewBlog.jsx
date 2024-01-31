@@ -1,33 +1,46 @@
-import * as React from 'react';
 import { TextField, Button, Box, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { useEffect, useState } from 'react';
+import useBlogCalls from '../hooks/useBlogCalls';
+import { useSelector } from 'react-redux';
 
-const categories = [
-  'Technology',
-  'Lifestyle',
-  'Business',
-];
-
-const statuses = [
-  'Draft',
-  'Published',
+const status = [
+  {
+    name:'Draft',
+    isPublish:false
+  },
+  {
+    name:'Published',
+    isPublish:true
+  },
 ];
 
 export default function NewBlog() {
-  const [category, setCategory] = React.useState('');
-  const [status, setStatus] = React.useState('');
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
+  const {getCategories, postBlog} = useBlogCalls()
 
-  const handleStatusChange = (event) => {
-    setStatus(event.target.value);
-  };
+  useEffect(() => {
+    getCategories()
+  }, [])
 
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-   
+  const {categories} = useSelector(state=>state.blog)
+
+  const [info, setInfo] = useState({   
+    categoryId: "",
+    title: "",
+    content: "",
+    image: "",
+    isPublish: "",
+  })
+
+  const handleChange = (e) => {
+    setInfo({...info, [e.target.name]:e.target.value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setInfo(info)
+    postBlog(info)
+    console.log(info);
   };
 
   return (
@@ -48,7 +61,6 @@ export default function NewBlog() {
         gap:1
       }}
       noValidate
-      autoComplete="off"
       onSubmit={handleSubmit}
     >
       <Typography variant="h4" gutterBottom>
@@ -58,26 +70,36 @@ export default function NewBlog() {
         required
         fullWidth
         id="title"
+        name="title"
         label="Title"
+        type='text'
+        value={info.title}
+        onChange={handleChange}
       />
       <TextField
         required
         fullWidth
-        id="image-url"
+        id="image"
+        name="image"
         label="Image URL"
+        value={info.image}
+        type='url'
+        onChange={handleChange}
       />
       <FormControl fullWidth sx={{m:1}}>
         <InputLabel id="category-label">Category</InputLabel>
         <Select
           labelId="category-label"
-          id="category"
-          value={category}
+          id="categoryId"
+          name="categoryId"
+          value={info.categoryId}
           label="Category *"
-          onChange={handleCategoryChange}
+          type='text'
+          onChange={handleChange}
         >
-          {categories.map((option, index) => (
-            <MenuItem key={index} value={option}>
-              {option}
+          {categories.map((category) => (
+            <MenuItem key={category._id} value={category._id}>
+              {category.name}
             </MenuItem>
           ))}
         </Select>
@@ -86,14 +108,15 @@ export default function NewBlog() {
         <InputLabel id="status-label">Status</InputLabel>
         <Select
           labelId="status-label"
-          id="status"
-          value={status}
+          id="isPublish"
+          name='isPublish'
+          value={info.isPublish}
           label="Status *"
-          onChange={handleStatusChange}
+          onChange={handleChange}
         >
-          {statuses.map((option, index) => (
-            <MenuItem key={index} value={option}>
-              {option}
+          {status.map((statu, index) => (
+            <MenuItem key={index} value={statu.isPublish}>
+              {statu.name}
             </MenuItem>
           ))}
         </Select>
@@ -102,9 +125,13 @@ export default function NewBlog() {
         required
         fullWidth
         id="content"
+        name='content'
         label="Content"
         multiline
+        value={info.content}
+        type='text'
         rows={4}
+        onChange={handleChange}
       />
       <Button
         type="submit"
