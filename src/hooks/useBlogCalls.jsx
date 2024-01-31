@@ -7,6 +7,7 @@ import {
   getBlogsSuccess,
   getDetailBlogsSuccess,
   getCategoriesSuccess,
+  getMyBlogsSuccess,
 } from "../features/blogSlice";
 
 const useBlogCalls = () => {
@@ -114,6 +115,19 @@ const useBlogCalls = () => {
     }
   };
 
+  const getMyBlogs = async (id) => {
+    dispatch(fetchStart());
+    try {
+      const {data} = await axiosWithToken(`/blogs?author=${id}`);
+      dispatch(getMyBlogsSuccess(data))
+      toastSuccessNotify("myblog başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("myblog başarısız");
+      console.log(error);
+    }
+  };
+
   return {
     getBlogs,
     getDetailBlogs,
@@ -123,6 +137,7 @@ const useBlogCalls = () => {
     postLike,
     getCategories,
     postBlog,
+    getMyBlogs,
   };
 };
 

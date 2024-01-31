@@ -25,7 +25,7 @@ export default function CardBlog({ blog }) {
       <CardMedia
         component="img"
         alt={blog?.title}
-        sx={{ width: 350 , height:200 }}
+        sx={{ width: 350 , height:200, objectFit:"contain" }}
      
         image={blog?.image}
       />
@@ -37,7 +37,7 @@ export default function CardBlog({ blog }) {
           overflow: 'hidden',
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
-          WebkitLineClamp: 3,
+          WebkitLineClamp: 4,
           height:"80px"
         }}>
           {blog?.content}
