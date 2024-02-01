@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import CommentForm from "../components/blog/CommentForm";
 import useBlogCalls from "../hooks/useBlogCalls";
 import CommentCard from "../components/blog/CommentCard";
+import UpdateModal from "../components/blog/UpdateModal";
 
 const Detail = () => {
   const [commentArea, setCommentArea] = useState(false);
@@ -38,6 +39,32 @@ const Detail = () => {
   const handleComment = () => {
     setCommentArea(!commentArea);
   };
+
+  const [data, setData] = useState({
+    categoryId: "",
+    title: "",
+    content: "",
+    image: "",
+    isPublish: "",
+    id:""
+  });
+
+  const [open, setOpen] = useState(false);
+  
+  const handleOpen = () => {
+    setOpen(true);
+    setData({
+      ...data,
+      categoryId: detail?.categoryId?._id,
+      title: detail?.title,
+      content: detail?.content,
+      image: detail?.image,
+      isPublish: detail?.isPublish,
+      id:detail._id
+    });
+  };
+
+  const handleClose = () => setOpen(false);
 
   return (
     <Stack sx={{ my: 5, justifyContent: "center", alignItems: "center" }}>
@@ -100,7 +127,7 @@ const Detail = () => {
         <Stack level="body-md" mt={2}>
           <Box>
             <CardActions sx={{ display: "flex", gap: "2rem" }}>
-              <Button variant="contained" color="success">
+              <Button variant="contained" color="success" onClick={handleOpen}>
                 update blog
               </Button>
               <Button variant="contained" color="error">
@@ -112,6 +139,12 @@ const Detail = () => {
       ) : (
         ""
       )}
+      <UpdateModal
+        open={open}
+        handleClose={handleClose}
+        data={data}
+        setData={setData}
+      />
     </Stack>
   );
 };

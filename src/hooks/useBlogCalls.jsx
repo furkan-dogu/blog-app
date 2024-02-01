@@ -128,6 +128,19 @@ const useBlogCalls = () => {
     }
   };
 
+  const updateMyBlog = async (info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`/blogs/${info.id}`, info);
+      getDetailBlogs(info.id)
+      toastSuccessNotify("update myblog başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("update myblog başarısız");
+      console.log(error);
+    }
+  };
+
   return {
     getBlogs,
     getDetailBlogs,
@@ -138,6 +151,7 @@ const useBlogCalls = () => {
     getCategories,
     postBlog,
     getMyBlogs,
+    updateMyBlog,
   };
 };
 
