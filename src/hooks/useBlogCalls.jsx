@@ -14,10 +14,10 @@ const useBlogCalls = () => {
   const { axiosPublic, axiosWithToken } = useAxios();
   const dispatch = useDispatch();
 
-  const getBlogs = async () => {
+  const getBlogs = async (page) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic("/blogs/");
+      const { data } = await axiosPublic(`/blogs/?page=${page}&limit=10`);
       dispatch(getBlogsSuccess(data));
     } catch (error) {
       dispatch(fetchFail());

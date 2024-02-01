@@ -33,11 +33,9 @@ export default function DeleteModal({ deleteOpen, handleDeleteClose, id }) {
       <Modal
         open={deleteOpen}
         onClose={handleDeleteClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography variant="h5" sx={{ mt: 2, textAlign:"center" }}>
             Do you really want to delete your blog? This process cannot be
             undone!
           </Typography>

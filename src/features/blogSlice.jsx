@@ -7,6 +7,7 @@ const initialState = {
   detail: [],
   categories: [],
   myBlogs: [],
+  totalPages: [],
 };
 
 const blogSlice = createSlice({
@@ -25,6 +26,7 @@ const blogSlice = createSlice({
       state.blogs = payload.data;
       state.loading = false;
       state.error = false;
+      state.totalPages = payload.details
     },
     getDetailBlogsSuccess: (state, { payload }) => {
       state.detail = payload.data;
