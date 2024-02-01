@@ -2,6 +2,7 @@ import { TextField, Button, Box, Typography, Select, MenuItem, FormControl, Inpu
 import { useEffect, useState } from 'react';
 import useBlogCalls from '../hooks/useBlogCalls';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const status = [
   {
@@ -15,6 +16,7 @@ const status = [
 ];
 
 export default function NewBlog() {
+  const navigate = useNavigate()
 
   const {getCategories, postBlog} = useBlogCalls()
 
@@ -40,7 +42,7 @@ export default function NewBlog() {
     e.preventDefault();
     setInfo(info)
     postBlog(info)
-    console.log(info);
+    navigate("/")
   };
 
   return (
