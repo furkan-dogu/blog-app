@@ -141,6 +141,19 @@ const useBlogCalls = () => {
     }
   };
 
+  const deleteMyBlog = async (id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.delete(`/blogs/${id}`);
+      toastSuccessNotify("delete myblog başarılı");
+      getBlogs()
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("delete myblog başarısız");
+      console.log(error);
+    }
+  };
+
   return {
     getBlogs,
     getDetailBlogs,
@@ -152,6 +165,7 @@ const useBlogCalls = () => {
     postBlog,
     getMyBlogs,
     updateMyBlog,
+    deleteMyBlog,
   };
 };
 

@@ -16,6 +16,7 @@ import CommentForm from "../components/blog/CommentForm";
 import useBlogCalls from "../hooks/useBlogCalls";
 import CommentCard from "../components/blog/CommentCard";
 import UpdateModal from "../components/blog/UpdateModal";
+import DeleteModal from "../components/blog/DeleteModal";
 
 const Detail = () => {
   const [commentArea, setCommentArea] = useState(false);
@@ -46,11 +47,12 @@ const Detail = () => {
     content: "",
     image: "",
     isPublish: "",
-    id:""
+    id: "",
   });
 
   const [open, setOpen] = useState(false);
-  
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
     setData({
@@ -60,11 +62,17 @@ const Detail = () => {
       content: detail?.content,
       image: detail?.image,
       isPublish: detail?.isPublish,
-      id:detail._id
+      id: detail._id,
     });
   };
 
   const handleClose = () => setOpen(false);
+
+  const handleDeleteOpen = () => {
+    setDeleteOpen(true);
+  }
+
+  const handleDeleteClose = () => setDeleteOpen(false);
 
   return (
     <Stack sx={{ my: 5, justifyContent: "center", alignItems: "center" }}>
@@ -130,7 +138,7 @@ const Detail = () => {
               <Button variant="contained" color="success" onClick={handleOpen}>
                 update blog
               </Button>
-              <Button variant="contained" color="error">
+              <Button variant="contained" color="error" onClick={handleDeleteOpen}>
                 delete blog
               </Button>
             </CardActions>
@@ -144,6 +152,11 @@ const Detail = () => {
         handleClose={handleClose}
         data={data}
         setData={setData}
+      />
+      <DeleteModal
+        deleteOpen={deleteOpen}
+        handleDeleteClose={handleDeleteClose}
+        id={detail._id}
       />
     </Stack>
   );
