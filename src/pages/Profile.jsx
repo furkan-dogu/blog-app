@@ -12,7 +12,7 @@ export default function Profile() {
     <Stack
       justifyContent={"center"}
       alignItems={"center"}
-      minHeight={"calc(100vh - 70px)"}
+      minHeight={"calc(90vh - 70px)"}
     >
       <Box
         display={"flex"}

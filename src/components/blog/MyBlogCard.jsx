@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const MyBlogCard = ({myBlog}) => {
     const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 450, m:1 }}>
+    <Card sx={{ maxWidth: 450, m:1, boxShadow: 5 }}>
     <CardMedia
       component="img"
       alt={myBlog?.title}

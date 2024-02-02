@@ -23,7 +23,7 @@ export default function CardBlog({ blog }) {
     : { color: "inherit" };
 
   return (
-    <Card sx={{ maxWidth: 450, m: 1 }}>
+    <Card sx={{ maxWidth: 450, m: 1, boxShadow: 5 }}>
       <CardMedia
         component="img"
         alt={blog?.title}

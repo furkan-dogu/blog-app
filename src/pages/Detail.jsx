@@ -74,13 +74,13 @@ const Detail = () => {
   const handleDeleteClose = () => setDeleteOpen(false);
 
   return (
-    <Stack sx={{ my: 5, justifyContent: "center", alignItems: "center" }}>
+    <Stack justifyContent= {"center"} alignItems= {"center"} minHeight={"calc(90vh - 70px)"} >
       <Box sx={{ maxWidth: "800px", width:"80%" }}>
         <CardMedia
           component="img"
           alt={detail?.title}
           image={detail?.image}
-          sx={{ objectFit: "contain" }}
+          sx={{ maxHeight: 500, objectFit: "contain" }}
         />
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: "green" }} aria-label="recipe" />}

@@ -12,6 +12,7 @@ import NotFound from '../pages/NotFound'
 import About from '../pages/About'
 import MyBlog from '../pages/MyBlog'
 import Profile from '../pages/Profile'
+import Footer from '../components/Footer'
 
 const AppRouter = () => {
 
@@ -34,6 +35,7 @@ const AppRouter = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

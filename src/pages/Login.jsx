@@ -12,38 +12,39 @@ import useAuthCalls from "../hooks/useAuthCalls";
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const {login} = useAuthCalls()
+  const { login } = useAuthCalls();
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "#0c0c0c" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign In
-          </Typography>
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={loginSchema}
-            onSubmit={(values, actions) => {
-              login(values);
-              actions.resetForm();
-              actions.setSubmitting(false);
+    <Box minHeight={"calc(90vh - 70px)"}>
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs">
+          <Box
+            sx={{
+              paddingTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            component={(props) => <LoginForm {...props} />}
           >
-          </Formik>
-        </Box>
-      </Container>
-    </ThemeProvider>
+            <Avatar sx={{ m: 1, bgcolor: "#0c0c0c" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign In
+            </Typography>
+            <Formik
+              initialValues={{ email: "", password: "" }}
+              validationSchema={loginSchema}
+              onSubmit={(values, actions) => {
+                login(values);
+                actions.resetForm();
+                actions.setSubmitting(false);
+              }}
+              component={(props) => <LoginForm {...props} />}
+            ></Formik>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </Box>
   );
 }
