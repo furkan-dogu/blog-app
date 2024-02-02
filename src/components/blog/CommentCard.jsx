@@ -15,14 +15,15 @@ export default function CommentCard({info,setInfo}) {
   const { deleteComment } = useBlogCalls();
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box width={"100%"}>
       {detail?.comments.map((comment) => (
         <Box key={comment?._id} sx={{ mt: 2 }}>
           <Card
             invertedColors
             sx={{
               boxShadow: "lg",
-              maxWidth: "90%",
+              maxWidth: "800px", 
+              width:"80%",
               overflow: "auto",
               resize: "horizontal",
               m: "auto",

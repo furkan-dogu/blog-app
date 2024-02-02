@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useBlogCalls from "../hooks/useBlogCalls";
 import Card from "../components/blog/Card";
-import { Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import PaginationControlled from "../components/Pagination";
 
 const DashBoard = () => {
@@ -15,19 +15,16 @@ const DashBoard = () => {
   }, [page]);
 
   return (
-    <Stack justifyContent={"space-between"} minHeight={"calc(100vh - 70px)"}>
-      <Grid container gap={3} my={3} justifyContent={"center"}>
+    <>
+      <Grid container spacing={2} my={3} justifyContent={"center"} minHeight={"calc(100vh - 70px)"}>
         {blogs.map((blog) => (
-          <Grid item key={blog._id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} my={1} key={blog._id}>
             <Card blog={blog} />
           </Grid>
         ))}
       </Grid>
-      <PaginationControlled
-        page={page}
-        setPage={setPage}
-      />
-    </Stack>
+      <PaginationControlled page={page} setPage={setPage} />
+    </>
   );
 };
 

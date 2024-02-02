@@ -12,26 +12,31 @@ import { useNavigate } from "react-router-dom";
 const MyBlogCard = ({myBlog}) => {
     const navigate = useNavigate();
   return (
-    <Card sx={{ width: 350, height: 460 }}>
+    <Card sx={{ maxWidth: 450, m:1 }}>
     <CardMedia
       component="img"
       alt={myBlog?.title}
-      sx={{ width: 350, height: 200, objectFit: "contain" }}
+      sx={{ height:150, objectFit:"contain" }}
       image={myBlog?.image}
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography gutterBottom variant="h5" component="div" sx={{
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 1,
+        }}>
         {myBlog?.title}
       </Typography>
       <Typography
         variant="body2"
         color="text.secondary"
         sx={{
-          overflow: "hidden",
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: 4,
-          height: "80px",
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 3,
+          height:"60px"
         }}
       >
         {myBlog?.content}
@@ -50,15 +55,15 @@ const MyBlogCard = ({myBlog}) => {
       <Box>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-          <Typography>{myBlog.likes.length}</Typography>
+          <Typography fontSize={"14px"}>{myBlog.likes.length}</Typography>
         </IconButton>
         <IconButton aria-label="comment">
           <CommentIcon />
-          <Typography>{myBlog.comments.length}</Typography>
+          <Typography fontSize={"14px"}>{myBlog.comments.length}</Typography>
         </IconButton>
         <IconButton aria-label="visible">
           <VisibilityIcon />
-          <Typography>{myBlog.countOfVisitors}</Typography>
+          <Typography fontSize={"14px"}>{myBlog.countOfVisitors}</Typography>
         </IconButton>
       </Box>
 
@@ -67,12 +72,9 @@ const MyBlogCard = ({myBlog}) => {
         sx={{
           color: "#0ef",
           backgroundColor: "#0C0C0C",
+          fontSize: "12px",
           cursor: "pointer",
-          "&:hover": {
-            background: "#0ef",
-            color: "#0C0C0C",
-            scale: "1.02",
-          },
+          "&:hover": { background: "#0ef", color: "#0C0C0C", scale: "1.02" },
         }}
         onClick={() => navigate(`/detail/${myBlog._id}`)}
       >

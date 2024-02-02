@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Stack } from "@mui/material";
 import { CardActions } from "@mui/joy";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -76,7 +75,7 @@ const Detail = () => {
 
   return (
     <Stack sx={{ my: 5, justifyContent: "center", alignItems: "center" }}>
-      <Card sx={{ maxWidth: "90%" }}>
+      <Box sx={{ maxWidth: "800px", width:"80%" }}>
         <CardMedia
           component="img"
           alt={detail?.title}
@@ -103,6 +102,7 @@ const Detail = () => {
               fontSize: "0.8rem",
               fontFamily: "Roboto, Helvetica, Arial, sans-serif;",
               fontWeight: "400",
+              textAlign:"justify"
             }}
           >
             {detail?.content}
@@ -124,7 +124,7 @@ const Detail = () => {
             </IconButton>
           </Box>
         </CardActions>
-      </Card>
+      </Box>
       {commentArea && (
         <>
           <CommentForm info={info} setInfo={setInfo} blogId={detail._id} />

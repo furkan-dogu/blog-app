@@ -43,9 +43,9 @@ const MyBlog = () => {
           </Button>
         </Stack>
       ) : (
-        <Grid container gap={3} mt={3} justifyContent={"center"}>
+        <Grid container spacing={2} my={3} justifyContent={"center"} minHeight={"calc(100vh - 70px)"}>
           {myBlogs.map((myBlog) => (
-            <Grid item key={myBlog._id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} my={1} key={myBlog._id}>
               <MyBlogCard myBlog={myBlog} />
             </Grid>
           ))}
