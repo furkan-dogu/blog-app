@@ -171,7 +171,7 @@ const RegisterForm = ({
         >
           Sign Up
         </Button>
-        <Stack direction={"row"} gap={"5px"}>
+        <Stack direction={"row"} gap={"5px"} justifyContent={"center"}>
           <Typography variant="body2">Already have an account?</Typography>
 
           <Typography

@@ -90,7 +90,7 @@ const LoginForm = ({handleChange, values, touched, errors, handleBlur}) => {
         >
           Sign In
         </Button>
-        <Stack direction={"row"} gap={"5px"}>
+        <Stack direction={"row"} gap={"5px"} justifyContent={"center"}>
           <Typography variant="body2">Don't have an account?</Typography>
 
           <Typography

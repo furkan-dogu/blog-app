@@ -17,38 +17,41 @@ const MyBlog = () => {
   }, []);
 
   return (
-    <Box minHeight={"calc(90vh - 70px)"}>
+    <>
       {!myBlogs.length ? (
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            display: "flex",
-            gap: 2,
-            flexDirection: "column",
-          }}
-        >
-          <Typography color={"red"}>No blogs data...</Typography>
-          <Button
-            variant="contained"
+        <Box minHeight={"calc(90vh - 70px)"}>
+          <Box
             sx={{
-              color: "#0ef",
-              backgroundColor: "#0C0C0C",
-              cursor: "pointer",
-              "&:hover": {
-                background: "#0ef",
-                color: "#0C0C0C",
-                scale: "1.02",
-              },
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              display: "flex",
+              gap: 2,
+              flexDirection: "column",
             }}
-            onClick={() => navigate("/new-blog")}
           >
-            write blog
-          </Button>
+            <Typography color={"red"}>No blogs data...</Typography>
+            <Button
+              variant="contained"
+              sx={{
+                color: "#0ef",
+                backgroundColor: "#0C0C0C",
+                cursor: "pointer",
+                "&:hover": {
+                  background: "#0ef",
+                  color: "#0C0C0C",
+                  scale: "1.02",
+                },
+              }}
+              onClick={() => navigate("/new-blog")}
+            >
+              write blog
+            </Button>
+          </Box>
         </Box>
       ) : (
+        <Box minHeight={"calc(90vh - 94px)"}>
           <Grid container spacing={2} my={3} justifyContent={"center"}>
             {myBlogs.map((myBlog) => (
               <Grid item xs={12} sm={6} md={4} lg={3} my={1} key={myBlog._id}>
@@ -56,8 +59,9 @@ const MyBlog = () => {
               </Grid>
             ))}
           </Grid>
+        </Box>
       )}
-    </Box>
+    </>
   );
 };
 

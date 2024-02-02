@@ -17,7 +17,7 @@ export default function CommentCard({info,setInfo}) {
   return (
     <Box width={"100%"}>
       {detail?.comments.map((comment) => (
-        <Box key={comment?._id} sx={{ mt: 2 }}>
+        <Box key={comment?._id} sx={{ my: 2 }}>
           <Card
             invertedColors
             sx={{

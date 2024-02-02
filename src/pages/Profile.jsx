@@ -1,5 +1,4 @@
 import Stack from "@mui/material/Stack";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
@@ -28,15 +27,15 @@ export default function Profile() {
           image={image}
           sx={{ width: 300, height: 300 }}
         />
-        <CardContent>
+        <Stack justifyContent={"center"} alignItems={"center"}>
           <Typography variant="h5">{user}</Typography>
           <Typography variant="body1" my={2}>
             {email}
           </Typography>
-          <Typography variant="body2" color="text.secondary" p={1}>
+          <Typography variant="body2" color="text.secondary" p={3} textAlign={"justify"}>
             {bio}
           </Typography>
-        </CardContent>
+        </Stack>
       </Box>
     </Stack>
   );

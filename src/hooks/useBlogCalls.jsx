@@ -21,7 +21,6 @@ const useBlogCalls = () => {
       dispatch(getBlogsSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("başarısız");
       console.log(error);
     }
   };
@@ -31,10 +30,8 @@ const useBlogCalls = () => {
     try {
       const { data } = await axiosWithToken(`/blogs/${id}`);
       dispatch(getDetailBlogsSuccess(data));
-      toastSuccessNotify("detail başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("detail başarısız");
       console.log(error);
     }
   };
@@ -44,10 +41,8 @@ const useBlogCalls = () => {
     try {
       await axiosWithToken.post("/comments/", info);
       getDetailBlogs(info.blogId);
-      toastSuccessNotify("post başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("post başarısız");
       console.log(error);
     }
   };
@@ -57,10 +52,8 @@ const useBlogCalls = () => {
     try {
       await axiosWithToken.delete(`/comments/${info._id}`);
       getDetailBlogs(info.blogId);
-      toastSuccessNotify("silme başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("silme başarısız");
       console.log(error);
     }
   };
@@ -69,11 +62,11 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`/comments/${info._id}`, info);
+      toastSuccessNotify("Your comment has been successfully updated")
       getDetailBlogs(info.blogId);
-      toastSuccessNotify("edit başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("edit başarısız");
+      toastErrorNotify("Error updating your comment")
       console.log(error);
     }
   };
@@ -83,10 +76,8 @@ const useBlogCalls = () => {
     try {
       await axiosWithToken.post(`/blogs/${info._id}/postLike`);
       getBlogs();
-      toastSuccessNotify("postlike başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("postlike başarısız");
       console.log(error);
     }
   };
@@ -106,11 +97,11 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post("/blogs/", info);
+      toastSuccessNotify("New blog successfully installed")
       getBlogs();
-      toastSuccessNotify("postblog başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("postblog başarısız");
+      toastErrorNotify("Failed to load new blog")
       console.log(error);
     }
   };
@@ -120,10 +111,8 @@ const useBlogCalls = () => {
     try {
       const {data} = await axiosWithToken(`/blogs?author=${id}`);
       dispatch(getMyBlogsSuccess(data))
-      toastSuccessNotify("myblog başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("myblog başarısız");
       console.log(error);
     }
   };
@@ -132,11 +121,11 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`/blogs/${info.id}`, info);
+      toastSuccessNotify("Blog update completed successfully")
       getDetailBlogs(info.id)
-      toastSuccessNotify("update myblog başarılı");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("update myblog başarısız");
+      toastErrorNotify("Failed to update blog")
       console.log(error);
     }
   };
@@ -145,11 +134,9 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.delete(`/blogs/${id}`);
-      toastSuccessNotify("delete myblog başarılı");
       getBlogs()
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("delete myblog başarısız");
       console.log(error);
     }
   };

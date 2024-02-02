@@ -80,7 +80,7 @@ const Detail = () => {
           component="img"
           alt={detail?.title}
           image={detail?.image}
-          sx={{ maxHeight: 500, objectFit: "contain" }}
+          sx={{ maxHeight: 500, objectFit: "contain", pt:1 }}
         />
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: "green" }} aria-label="recipe" />}
@@ -134,7 +134,7 @@ const Detail = () => {
       {detail?.userId?._id === _id ? (
         <Stack level="body-md" mt={2}>
           <Box>
-            <CardActions sx={{ display: "flex", gap: "2rem" }}>
+            <CardActions sx={{ display: "flex", gap: "2rem", mb:"10px" }}>
               <Button variant="contained" color="success" onClick={handleOpen}>
                 update blog
               </Button>
