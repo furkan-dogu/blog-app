@@ -5,6 +5,7 @@ import Card from "../components/blog/Card";
 import { Stack } from "@mui/material";
 import PaginationControlled from "../components/blog/Pagination";
 import MostVisited from "../components/blog/MostVisited";
+import BlogCategories from "../components/blog/BlogCategories";
 
 const DashBoard = () => {
   const { blogs } = useSelector((state) => state.blog);
@@ -24,13 +25,12 @@ const DashBoard = () => {
         gap={5}
       >
         <MostVisited />
-        {/* <Stack justifyContent="center" flexGrow={1}> */}
         <Stack justifyContent="center">
           {blogs.map((blog) => (
             <Card key={blog._id} blog={blog} />
           ))}
         </Stack>
-        <MostVisited />
+        <BlogCategories/>
       </Stack>
       <PaginationControlled page={page} setPage={setPage} />
     </>

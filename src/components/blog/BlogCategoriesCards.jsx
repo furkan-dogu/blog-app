@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { Box, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function MostVisitedCards({ sortedBlog }) {
+export default function BlogCategoriesCards({ sortedBlog }) {
     const navigate = useNavigate()
   return (
     <Stack
@@ -23,13 +23,10 @@ export default function MostVisitedCards({ sortedBlog }) {
         />
       </Box>
       <Box width={180}>
-        <Typography variant="body1">
+      <Typography variant="body1">
           {sortedBlog?.title}
         </Typography>
-        <Typography variant="body1">
-          Number of Visits:
-          {sortedBlog?.countOfVisitors}
-        </Typography>
+
         <Typography variant="body2" color="text.secondary">
           {new Date(sortedBlog?.createdAt).toLocaleString("tr-TR")}
         </Typography>
