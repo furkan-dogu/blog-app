@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useBlogCalls from "../hooks/useBlogCalls";
 import Card from "../components/blog/Card";
-import { Grid, Stack } from "@mui/material";
-import PaginationControlled from "../components/Pagination";
+import { Stack } from "@mui/material";
+import PaginationControlled from "../components/blog/Pagination";
+import MostVisited from "../components/blog/MostVisited";
 
 const DashBoard = () => {
   const { blogs } = useSelector((state) => state.blog);
@@ -15,16 +16,24 @@ const DashBoard = () => {
   }, [page]);
 
   return (
-    <Stack minHeight={"calc(90vh - 70px)"} justifyContent={"space-between"}>
-      <Grid container spacing={2} my={3} justifyContent={"center"}>
-        {blogs.map((blog) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} my={1} key={blog._id}>
-            <Card blog={blog} />
-          </Grid>
-        ))}
-      </Grid>
+    <>
+      <Stack
+        minHeight={"calc(90vh - 70px)"}
+        justifyContent={"center"}
+        flexDirection={"row"}
+        gap={5}
+      >
+        <MostVisited />
+        {/* <Stack justifyContent="center" flexGrow={1}> */}
+        <Stack justifyContent="center">
+          {blogs.map((blog) => (
+            <Card key={blog._id} blog={blog} />
+          ))}
+        </Stack>
+        <MostVisited />
+      </Stack>
       <PaginationControlled page={page} setPage={setPage} />
-    </Stack>
+    </>
   );
 };
 

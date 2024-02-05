@@ -4,7 +4,6 @@ import { CardActions } from "@mui/joy";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -109,11 +108,7 @@ const Detail = () => {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "space-between" }}>
-          <Box>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-              <Typography>{detail?.likes?.length}</Typography>
-            </IconButton>
+          <Box pl={2}>
             <IconButton aria-label="comment" onClick={handleComment}>
               <CommentIcon />
               <Typography>{detail?.comments?.length}</Typography>

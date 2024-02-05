@@ -8,6 +8,7 @@ import {
   getDetailBlogsSuccess,
   getCategoriesSuccess,
   getMyBlogsSuccess,
+  getBlogsAllSuccess
 } from "../features/blogSlice";
 
 const useBlogCalls = () => {
@@ -17,8 +18,19 @@ const useBlogCalls = () => {
   const getBlogs = async (page) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic(`/blogs/?page=${page}&limit=10`);
+      const { data } = await axiosPublic(`/blogs/?page=${page}&limit=4`);
       dispatch(getBlogsSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+  const getBlogsAll = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosPublic(`/blogs/`);
+      dispatch(getBlogsAllSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -153,6 +165,7 @@ const useBlogCalls = () => {
     getMyBlogs,
     updateMyBlog,
     deleteMyBlog,
+    getBlogsAll
   };
 };
 

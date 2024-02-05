@@ -15,42 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuthCalls from "../hooks/useAuthCalls";
 import Logo from "../assets/blog-app.jpg";
-
-const pages = [
-  {
-    id: 1,
-    title: "Dashboard",
-    url: "/",
-  },
-  {
-    id: 2,
-    title: "New Blog",
-    url: "/new-blog",
-  },
-  {
-    id: 3,
-    title: "About",
-    url: "/about",
-  },
-];
-
-const settings = [
-  {
-    id: 1,
-    title: "My Blogs",
-    url: "/my-blogs",
-  },
-  {
-    id: 2,
-    title: "Profile",
-    url: "/profile",
-  },
-  {
-    id: 3,
-    title: "Logout",
-    url: "/",
-  },
-];
+import { pages, settings } from "../helper/navbarStyle"
 
 function Navbar() {
   const { user, image } = useSelector((state) => state.auth);

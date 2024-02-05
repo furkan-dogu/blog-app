@@ -8,6 +8,7 @@ const initialState = {
   categories: [],
   myBlogs: [],
   totalPages: [],
+  blogsAll:[]
 };
 
 const blogSlice = createSlice({
@@ -27,6 +28,11 @@ const blogSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.totalPages = payload.details
+    },
+    getBlogsAllSuccess: (state, { payload }) => {
+      state.blogsAll = payload.data;
+      state.loading = false;
+      state.error = false;
     },
     getDetailBlogsSuccess: (state, { payload }) => {
       state.detail = payload.data;
@@ -53,6 +59,7 @@ export const {
   getDetailBlogsSuccess,
   getCategoriesSuccess,
   getMyBlogsSuccess,
+  getBlogsAllSuccess
 } = blogSlice.actions;
 
 export default blogSlice.reducer;

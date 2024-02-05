@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { useSelector } from "react-redux";
@@ -23,46 +23,50 @@ export default function CardBlog({ blog }) {
     : { color: "inherit" };
 
   return (
-    <Card sx={{ maxWidth: 450, m: 1, boxShadow: 5 }}>
-      <CardMedia
-        component="img"
-        alt={blog?.title}
-        sx={{ height: 150, objectFit: "contain" }}
-        image={blog?.image}
-      />
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{
-            overflow: "hidden",
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 1,
-          }}
-        >
-          {blog?.title}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{
-            overflow: "hidden",
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 3,
-            height: "60px",
-          }}
-        >
-          {blog?.content}
-        </Typography>
+    <Card sx={{ m: 1, boxShadow: 5 }}>
+      <Stack flexDirection={"row"}>
+        <Box sx={{ height: 200, width: 300 }}>
+          <CardMedia
+            component="img"
+            alt={blog?.title}
+            sx={{ height: 200, width: 300, p:1 }}
+            image={blog?.image}
+          />
+        </Box>
 
-        <hr />
-        <Typography variant="body2" color="text.secondary">
-          Published Date: {new Date(blog?.createdAt).toLocaleString("tr-TR")}
-        </Typography>
-      </CardContent>
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              overflow: "hidden",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 1,
+            }}
+          >
+            {blog?.title}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              overflow: "hidden",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 4,
+            }}
+          >
+            {blog?.content}
+          </Typography>
+
+          <hr />
+          <Typography variant="body2" color="text.secondary">
+            Published Date: {new Date(blog?.createdAt).toLocaleString("tr-TR")}
+          </Typography>
+        </CardContent>
+      </Stack>
       <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
         <Box>
           <IconButton
