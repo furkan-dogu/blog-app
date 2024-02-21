@@ -23,7 +23,7 @@ export default function CardBlog({ blog }) {
     : { color: "inherit" };
 
   return  (
-    <Card sx={{ m: 1, boxShadow: 5 }}>
+    <Card sx={{ m: 2, boxShadow: 5 }}>
       <Stack flexDirection={{ xl:"row", lg:"column"}}>
         <Box sx={{ height: { xl: 180, lg: 230 }, minWidth: 300 }}>
           <CardMedia

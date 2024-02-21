@@ -39,7 +39,11 @@ const BlogCategories = () => {
 
   return (
     <Stack gap={2} m={2} mt={5}>
-            <Typography align="center" variant="h5">
+      <Typography
+        align="center"
+        variant="h5"
+        sx={{ textDecoration: "underline" }}
+      >
         Lasted Published
       </Typography>
       <FormControl fullWidth sx={{ m: 1 }}>
@@ -52,13 +56,15 @@ const BlogCategories = () => {
           label="Selected Category"
           type="text"
           onChange={handleChange}
-          endAdornment={selected && (
-            <InputAdornment position="end" sx={{mr:2}}>
+          endAdornment={
+            selected && (
+              <InputAdornment position="end" sx={{ mr: 2 }}>
                 <IconButton onClick={() => setSelected("")}>
-                    <ClearIcon/>
+                  <ClearIcon />
                 </IconButton>
-            </InputAdornment>
-          )}
+              </InputAdornment>
+            )
+          }
         >
           {categories.map((category) => (
             <MenuItem key={category._id} value={category._id}>
@@ -67,7 +73,6 @@ const BlogCategories = () => {
           ))}
         </Select>
       </FormControl>
-
 
       {sorted
         .filter((sortedBlog) =>
