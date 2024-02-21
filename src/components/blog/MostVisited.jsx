@@ -19,7 +19,7 @@ const MostVisited = () => {
 
 
   return (
-    <Stack gap={2} m={2}>
+    <Stack gap={2} m={2} mt={5}>
       <Typography align="center" variant="h5">Most Visited</Typography>
 
         {sortedBlogs.map((sortedBlog) => (

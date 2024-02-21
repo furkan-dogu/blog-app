@@ -38,7 +38,10 @@ const BlogCategories = () => {
   };
 
   return (
-    <Stack gap={2} m={2}>
+    <Stack gap={2} m={2} mt={5}>
+            <Typography align="center" variant="h5">
+        Lasted Published
+      </Typography>
       <FormControl fullWidth sx={{ m: 1 }}>
         <InputLabel id="category-label">Selected Category</InputLabel>
         <Select
@@ -64,9 +67,7 @@ const BlogCategories = () => {
           ))}
         </Select>
       </FormControl>
-      <Typography align="center" variant="h5">
-        Lasted Published
-      </Typography>
+
 
       {sorted
         .filter((sortedBlog) =>

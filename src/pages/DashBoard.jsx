@@ -19,18 +19,24 @@ const DashBoard = () => {
   return (
     <>
       <Stack
+        direction={"row"}
+        gap={2}
+        justifyContent="center"
         minHeight={"calc(90vh - 70px)"}
-        justifyContent={"center"}
-        flexDirection={"row"}
-        gap={5}
       >
-        <MostVisited />
-        <Stack justifyContent="center">
+        <Stack display={{ xs: "none", md: "block" }}>
+          <MostVisited />
+        </Stack>
+
+        <Stack flex={1} maxWidth={"90%"} marginTop={5}>
           {blogs.map((blog) => (
             <Card key={blog._id} blog={blog} />
           ))}
         </Stack>
-        <BlogCategories/>
+
+        <Stack display={{ xs: "none", md: "block" }}>
+          <BlogCategories />
+        </Stack>
       </Stack>
       <PaginationControlled page={page} setPage={setPage} />
     </>
