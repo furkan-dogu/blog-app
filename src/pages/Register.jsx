@@ -40,13 +40,11 @@ export default function Register() {
                 firstName: "",
                 lastName: "",
                 image: "",
-                city: "",
-                bio: "",
+                bio: ""
               }}
               validationSchema={registerSchema}
               onSubmit={(values, actions) => {
                 register(values);
-                actions.resetForm();
                 actions.setSubmitting(false);
               }}
               component={(props) => <RegisterForm {...props} />}

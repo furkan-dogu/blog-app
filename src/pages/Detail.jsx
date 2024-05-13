@@ -84,9 +84,6 @@ const Detail = () => {
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: "green" }} aria-label="recipe" />}
           title={detail?.userId?.username}
-          subheader={new Date(detail?.categoryId?.createdAt).toLocaleString(
-            "tr-TR"
-          )}
         />
         <CardContent>
           <Typography variant="body2">{detail.title}</Typography>
