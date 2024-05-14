@@ -33,6 +33,8 @@ const BlogCategories = () => {
 
   const sorted = sortedBlogs.slice(0, 10);
 
+  console.log(selected);
+
   const handleChange = (e) => {
     setSelected(e.target.value);
   };
@@ -76,7 +78,7 @@ const BlogCategories = () => {
 
       {sorted
         .filter((sortedBlog) =>
-          selected ? sortedBlog.categoryId === selected : true
+          selected ? sortedBlog.categoryId._id === selected : true
         )
         .map((sortedBlog) => (
           <BlogCategoriesCards key={sortedBlog._id} sortedBlog={sortedBlog} />
