@@ -32,8 +32,8 @@ const useAuthCalls = () => {
       navigate("/")
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("The register process failed.")
-      console.log(error);
+      toastErrorNotify("The register process failed.");
+      console.log(error.response.data.message);
     }
   };
 

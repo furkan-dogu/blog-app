@@ -8,9 +8,9 @@ import MostVisited from "../components/blog/MostVisited";
 import BlogCategories from "../components/blog/BlogCategories";
 
 const DashBoard = () => {
-  const { blogs } = useSelector((state) => state.blog);
+  const { blogs, current } = useSelector((state) => state.blog);
   const { getBlogs } = useBlogCalls();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(current);
 
   useEffect(() => {
     getBlogs(page);

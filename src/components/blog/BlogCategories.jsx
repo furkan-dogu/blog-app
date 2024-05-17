@@ -33,8 +33,6 @@ const BlogCategories = () => {
 
   const sorted = sortedBlogs.slice(0, 10);
 
-  console.log(selected);
-
   const handleChange = (e) => {
     setSelected(e.target.value);
   };

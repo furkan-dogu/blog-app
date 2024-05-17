@@ -8,7 +8,8 @@ const initialState = {
   categories: [],
   myBlogs: [],
   totalPages: [],
-  blogsAll:[]
+  blogsAll:[],
+  current: ""
 };
 
 const blogSlice = createSlice({
@@ -28,6 +29,7 @@ const blogSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.totalPages = payload.details
+      state.current = payload.details.pages.current
     },
     getBlogsAllSuccess: (state, { payload }) => {
       state.blogsAll = payload.data;
