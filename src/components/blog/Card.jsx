@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { useSelector } from "react-redux";
 
-export default function CardBlog({ blog }) {
+export default function CardBlog({ blog, page }) {
   const navigate = useNavigate();
   const { postLike } = useBlogCalls();
   const { _id } = useSelector((state) => state.auth);
@@ -70,7 +70,7 @@ export default function CardBlog({ blog }) {
       <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
         <Box>
           <IconButton
-            onClick={() => postLike(blog)}
+            onClick={() => postLike(blog, page)}
             aria-label="add to favorites"
           >
             <FavoriteIcon sx={likeStyle} />

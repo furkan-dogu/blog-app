@@ -30,7 +30,7 @@ const DashBoard = () => {
 
         <Stack flex={1} maxWidth={"90%"} marginTop={5}>
           {blogs.map((blog) => (
-            <Card key={blog._id} blog={blog} />
+            <Card key={blog._id} blog={blog} page={page} />
           ))}
         </Stack>
 

@@ -83,11 +83,11 @@ const useBlogCalls = () => {
     }
   };
 
-  const postLike = async (info) => {
+  const postLike = async (info, page) => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post(`/blogs/${info._id}/postLike`);
-      getBlogs();
+      getBlogs(page); 
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
