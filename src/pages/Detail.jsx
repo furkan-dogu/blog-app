@@ -90,7 +90,7 @@ const Detail = () => {
     return <Loading />
   } else {
     return (
-      <Stack justifyContent= {"center"} alignItems= {"center"} minHeight={"calc(90vh - 70px)"} >
+      <Stack justifyContent= {"center"} alignItems= {"center"} minHeight={"calc(90vh - 70px)"} py={2} >
         <Box sx={{ maxWidth: "800px", width:"80%" }}>
           <CardMedia
             component="img"
