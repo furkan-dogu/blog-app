@@ -55,12 +55,13 @@ export default function NewBlog() {
   };
 
   return (
-    <Box minHeight={"calc(90vh - 70px)"} pt={3}>
+    <Box minHeight={"calc(90vh - 70px)"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
       <Box
         component="form"
         sx={{
           "& .MuiTextField-root": { m: 2 },
-          maxWidth: "400px",
+          width: "90%",
+          maxWidth: "500px",
           mx: "auto",
           padding: "20px",
           boxShadow: 5,

@@ -51,7 +51,7 @@ const MyBlog = () => {
           </Box>
         </Box>
       ) : (
-        <Box minHeight={"calc(90vh - 94px)"}>
+        <Box minHeight={"calc(90vh - 94px)"} mx={5}>
           <Grid container spacing={2} my={3} justifyContent={"center"}>
             {myBlogs.map((myBlog) => (
               <Grid item xs={12} sm={6} md={4} lg={3} my={1} key={myBlog._id}>

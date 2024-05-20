@@ -22,14 +22,14 @@ export default function CardBlog({ blog, page }) {
     ? { color: "red" }
     : { color: "inherit" };
 
-  return  (
+  return (
     <Card sx={{ m: 2, boxShadow: 5 }}>
-      <Stack flexDirection={{ xl:"row", lg:"column"}}>
+      <Stack flexDirection={{ xl: "row", lg: "column" }}>
         <Box sx={{ height: { xl: 180, lg: 230 }, minWidth: 300 }}>
           <CardMedia
             component="img"
             alt={blog?.title}
-            sx={{ height: { xl: 180, lg: 250 }, minWidth: 300, p:1 }}
+            sx={{ height: { xl: 180, lg: 250 }, minWidth: 300, p: 1 }}
             image={blog?.image}
           />
         </Box>
@@ -95,7 +95,7 @@ export default function CardBlog({ blog, page }) {
             cursor: "pointer",
             "&:hover": { background: "#0ef", color: "#0C0C0C", scale: "1.02" },
           }}
-          onClick={() => navigate(`/detail/${blog._id}`)}
+          onClick={() => navigate(`/detail/${blog._id}`, { state: { from: "main" } })}
         >
           Read More
         </Button>

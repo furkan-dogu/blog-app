@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Stack } from "@mui/material";
 import { CardActions } from "@mui/joy";
 import CardContent from "@mui/material/CardContent";
@@ -27,6 +27,9 @@ const Detail = () => {
   const { getDetailBlogs } = useBlogCalls();
 
   const { id } = useParams();
+
+  const location = useLocation();
+  const fromPage = location.state?.from;
 
   const [info, setInfo] = useState({
     blogId: detail._id,
@@ -137,7 +140,7 @@ const Detail = () => {
             <CommentCard info={info} setInfo={setInfo} />
           </>
         )}
-        {detail?.userId?._id === _id ? (
+        {detail?.userId?._id === _id && fromPage === "myBlogs" ? (
           <Stack level="body-md" mt={2}>
             <Box>
               <CardActions sx={{ display: "flex", gap: "2rem", mb:"10px" }}>
@@ -150,9 +153,7 @@ const Detail = () => {
               </CardActions>
             </Box>
           </Stack>
-        ) : (
-          ""
-        )}
+        ) : null}
         <UpdateModal
           open={open}
           handleClose={handleClose}
