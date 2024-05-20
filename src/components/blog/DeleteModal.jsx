@@ -25,7 +25,7 @@ export default function DeleteModal({ deleteOpen, handleDeleteClose, id }) {
   const handleDelete = () => {
     deleteMyBlog(id)
     handleDeleteClose()
-    navigate("/")
+    navigate("/my-blogs")
   }
 
   return (

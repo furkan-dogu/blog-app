@@ -16,10 +16,11 @@ import CommentCard from "../components/blog/CommentCard";
 import UpdateModal from "../components/blog/UpdateModal";
 import DeleteModal from "../components/blog/DeleteModal";
 import Loading from "../components/blog/Loading";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Detail = () => {
   const [commentArea, setCommentArea] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const { detail } = useSelector((state) => state.blog);
 
   const { _id } = useSelector((state) => state.auth);
@@ -39,11 +40,10 @@ const Detail = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000)
+    }, 1000);
 
-    return () => clearTimeout(timer)
-  }, [])
-  
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     getDetailBlogs(id);
@@ -82,25 +82,31 @@ const Detail = () => {
 
   const handleDeleteOpen = () => {
     setDeleteOpen(true);
-  }
+  };
 
   const handleDeleteClose = () => setDeleteOpen(false);
 
-  if(loading) {
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   } else {
     return (
-      <Stack justifyContent= {"center"} alignItems= {"center"} minHeight={"calc(90vh - 70px)"} py={2} >
-        <Box sx={{ maxWidth: "800px", width:"80%" }}>
+      <Stack
+        justifyContent={"center"}
+        alignItems={"center"}
+        minHeight={"calc(90vh - 70px)"}
+        py={2}
+      >
+        <Box sx={{ maxWidth: "800px", width: "80%" }}>
           <CardMedia
             component="img"
             alt={detail?.title}
             image={detail?.image}
-            sx={{ maxHeight: 500, objectFit: "contain", pt:1 }}
+            sx={{ maxHeight: 500, objectFit: "contain", pt: 1 }}
           />
           <CardHeader
             avatar={<Avatar sx={{ bgcolor: "green" }} aria-label="recipe" />}
             title={detail?.userId?.username}
+            subheader={new Date(detail?.createdAt).toLocaleString("tr-TR")}
           />
           <CardContent>
             <Typography variant="body2">{detail.title}</Typography>
@@ -115,7 +121,7 @@ const Detail = () => {
                 fontSize: "0.8rem",
                 fontFamily: "Roboto, Helvetica, Arial, sans-serif;",
                 fontWeight: "400",
-                textAlign:"justify"
+                textAlign: "justify",
               }}
             >
               {detail?.content}
@@ -123,6 +129,10 @@ const Detail = () => {
           </CardContent>
           <CardActions sx={{ justifyContent: "space-between" }}>
             <Box pl={2}>
+            <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+            <Typography fontSize={"14px"}>{detail?.likes?.length}</Typography>
+          </IconButton>
               <IconButton aria-label="comment" onClick={handleComment}>
                 <CommentIcon />
                 <Typography>{detail?.comments?.length}</Typography>
@@ -143,11 +153,19 @@ const Detail = () => {
         {detail?.userId?._id === _id && fromPage === "myBlogs" ? (
           <Stack level="body-md" mt={2}>
             <Box>
-              <CardActions sx={{ display: "flex", gap: "2rem", mb:"10px" }}>
-                <Button variant="contained" color="success" onClick={handleOpen}>
+              <CardActions sx={{ display: "flex", gap: "2rem", mb: "10px" }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleOpen}
+                >
                   update blog
                 </Button>
-                <Button variant="contained" color="error" onClick={handleDeleteOpen}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleDeleteOpen}
+                >
                   delete blog
                 </Button>
               </CardActions>

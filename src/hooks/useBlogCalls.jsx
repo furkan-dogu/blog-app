@@ -105,12 +105,12 @@ const useBlogCalls = () => {
     }
   };
 
-  const postBlog = async (info) => {
+  const postBlog = async (info, page) => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.post("/blogs/", info);
       toastSuccessNotify("New blog successfully installed")
-      getBlogs();
+      getBlogs(page);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Failed to load new blog")

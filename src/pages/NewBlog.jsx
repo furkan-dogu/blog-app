@@ -33,7 +33,7 @@ export default function NewBlog() {
     getCategories();
   }, []);
 
-  const { categories } = useSelector((state) => state.blog);
+  const { categories, current } = useSelector((state) => state.blog);
 
   const [info, setInfo] = useState({
     categoryId: "",
@@ -50,7 +50,7 @@ export default function NewBlog() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setInfo(info);
-    postBlog(info);
+    postBlog(info, current);
     navigate("/");
   };
 

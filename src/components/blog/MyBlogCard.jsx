@@ -8,9 +8,11 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MyBlogCard = ({ myBlog }) => {
   const navigate = useNavigate();
+  const { detail } = useSelector((state) => state.blog);
   return (
     <Card sx={{ maxWidth: 450, m: 1, boxShadow: 5 }}>
       <CardMedia
@@ -56,15 +58,15 @@ const MyBlogCard = ({ myBlog }) => {
         <Box>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
-            <Typography fontSize={"14px"}>{myBlog.likes.length}</Typography>
+            <Typography fontSize={"14px"}>{detail?.likes?.length}</Typography>
           </IconButton>
           <IconButton aria-label="comment">
             <CommentIcon />
-            <Typography fontSize={"14px"}>{myBlog.comments.length}</Typography>
+            <Typography>{detail?.comments?.length}</Typography>
           </IconButton>
           <IconButton aria-label="visible">
             <VisibilityIcon />
-            <Typography fontSize={"14px"}>{myBlog.countOfVisitors}</Typography>
+            <Typography>{detail?.countOfVisitors}</Typography>
           </IconButton>
         </Box>
 
@@ -77,7 +79,9 @@ const MyBlogCard = ({ myBlog }) => {
             cursor: "pointer",
             "&:hover": { background: "#0ef", color: "#0C0C0C", scale: "1.02" },
           }}
-          onClick={() => navigate(`/detail/${myBlog._id}`, { state: { from: "myBlogs" } })}
+          onClick={() =>
+            navigate(`/detail/${myBlog._id}`, { state: { from: "myBlogs" } })
+          }
         >
           Read More
         </Button>
