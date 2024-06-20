@@ -37,7 +37,7 @@ export default function CommentCard({info,setInfo}) {
               </Typography>
               <Stack level="body-md">
                 <Box>
-                  <Typography>{comment?.comment}</Typography>
+                  <Typography whiteSpace={"pre-wrap"}>{comment?.comment}</Typography>
                   {comment?.userId?._id === _id ? (
                     <CardActions>
                       <Button variant="solid" color="success" onClick={() => {

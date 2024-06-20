@@ -115,6 +115,7 @@ const Detail = () => {
               gutterBottom
               variant="h5"
               component="div"
+              whiteSpace={"pre-wrap"}
               sx={{
                 mt: 1,
                 mb: 1.5,

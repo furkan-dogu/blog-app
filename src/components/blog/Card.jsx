@@ -51,6 +51,7 @@ export default function CardBlog({ blog, page }) {
           <Typography
             variant="body2"
             color="text.secondary"
+            whiteSpace={"pre-wrap"}
             sx={{
               overflow: "hidden",
               display: "-webkit-box",
