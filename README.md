@@ -8,6 +8,9 @@
 
 This project I created with React contains the web version of the blog application. Users can view blog posts, create new posts, edit, delete, comment and like existing posts through this application after registering or logging in.
 
+- Email: guest@site.com
+- Password: aA?123456
+
 ## Table of Contents
 
 - [Features](#features)
